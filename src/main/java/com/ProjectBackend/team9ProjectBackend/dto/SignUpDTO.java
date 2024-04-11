@@ -61,7 +61,8 @@ public class SignUpDTO {
     @Override
     public String toString() {
         return "SignUpDTO{" +
-                "username='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
+                "lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

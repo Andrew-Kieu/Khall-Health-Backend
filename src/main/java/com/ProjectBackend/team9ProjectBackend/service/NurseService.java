@@ -14,14 +14,7 @@ public class NurseService {
 
     private final NurseRepository nurseRepository;
 
-//    public NurseService(NurseRepository nurseRepository) {
-//        this.nurseRepository = nurseRepository;
-//    }
 
-//    public Nurse saveNurse(Nurse nurse) {
-//        // Delegate to NurseRepository to save the nurse
-//        return nurseRepository.save(nurse);
-//    }
 
     public Nurse postNurse(Nurse nurse){
         return nurseRepository.save(nurse);
