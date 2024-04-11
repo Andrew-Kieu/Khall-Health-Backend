@@ -1,9 +1,11 @@
 package com.ProjectBackend.team9ProjectBackend.Controller;
 
+import com.ProjectBackend.team9ProjectBackend.Entity.User;
 import com.ProjectBackend.team9ProjectBackend.dto.AuthRequest;
 import com.ProjectBackend.team9ProjectBackend.dto.AuthResponse;
 import com.ProjectBackend.team9ProjectBackend.dto.SignUpDTO;
 import com.ProjectBackend.team9ProjectBackend.dto.UserDTO;
+import com.ProjectBackend.team9ProjectBackend.repository.UserRepository;
 import com.ProjectBackend.team9ProjectBackend.service.AuthorizationServiceImplem;
 import com.ProjectBackend.team9ProjectBackend.service.jwt.UserDetailsServiceImplementation;
 import com.ProjectBackend.team9ProjectBackend.util.JwtUtil;
@@ -18,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -30,11 +33,14 @@ public class AuthorizationController {
     private final UserDetailsServiceImplementation userDetailsServiceImplementation;
     private final JwtUtil jwtUtil;
 
-    public AuthorizationController(AuthorizationServiceImplem authorizationServiceImplem, AuthenticationManager authenticationManager, UserDetailsServiceImplementation userDetailsServiceImplementation, JwtUtil jwtUtil){
+    private final UserRepository userRepository;
+
+    public AuthorizationController(AuthorizationServiceImplem authorizationServiceImplem, AuthenticationManager authenticationManager, UserDetailsServiceImplementation userDetailsServiceImplementation, JwtUtil jwtUtil, UserRepository userRepository){
         this.authorizationServiceImplem = authorizationServiceImplem;
         this.authenticationManager = authenticationManager;
         this.userDetailsServiceImplementation = userDetailsServiceImplementation;
         this.jwtUtil = jwtUtil;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/signUp")
@@ -47,19 +53,30 @@ public class AuthorizationController {
         return new ResponseEntity<>(createdUserDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
-    public AuthResponse createAuthToken(@RequestBody AuthRequest authRequest, HttpServletResponse response ) throws IOException {
+    @PostMapping("/signIn")
+    public ResponseEntity<?> createAuthToken(@RequestBody AuthRequest authRequest) {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword())
+            );
         } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("Invalid name or password");
-        } catch (DisabledException disabledException) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not active");
-            return null;
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+        } catch (DisabledException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not active");
         }
 
         final UserDetails userDetails = userDetailsServiceImplementation.loadUserByUsername(authRequest.getEmail());
         final String jwt = JwtUtil.createToken(userDetails.getUsername());
-        return new AuthResponse(jwt);
+
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
+        if (user.isPresent()) {
+            AuthResponse authResponse = new AuthResponse();
+            authResponse.setJwt(jwt);
+            authResponse.setUserRoles(user.get().getUserRole());
+            authResponse.setId(user.get().getId());
+            return ResponseEntity.ok(authResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User not found");
+        }
     }
 }

@@ -27,18 +27,4 @@ public class NurseController {
         return nurseService.getNurses();
     }
 
-
-
-//     private final NurseService nurseService;
-//
-//    public NurseController(NurseService nurseService) {
-//        this.nurseService = nurseService;
-//    }
-//
-//
-//    @PostMapping("/nurses")
-//    public Nurse postNurse(@RequestBody Nurse nurse) {
-//        return NurseRepository.save(nurse);
-//    }
-
 }
