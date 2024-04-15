@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
 
 
 @Entity
@@ -39,7 +42,8 @@ public class User {
         // Default constructor required by JPA
     }
 
-    public User(String firstName, String lastName, String email, String password, UserRoles userRole) {
+    public User(String username, String password, Collection<? extends GrantedAuthority> authorities)
+    {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

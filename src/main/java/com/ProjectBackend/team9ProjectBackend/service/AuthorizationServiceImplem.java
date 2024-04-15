@@ -31,7 +31,7 @@ public class AuthorizationServiceImplem implements AuthorizationService {
         createdUserDTO.setFirstName(createdUser.getFirstName());
         createdUserDTO.setLastName(createdUser.getLastName());
         createdUserDTO.setEmail(createdUser.getEmail());
-        createdUserDTO.setUserRole(createdUser.getUserRole());
+        createdUserDTO.setUserRole(UserRoles.NURSE);
         return createdUserDTO;
     }
 }
