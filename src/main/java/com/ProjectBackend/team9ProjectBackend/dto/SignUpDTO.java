@@ -1,5 +1,7 @@
 package com.ProjectBackend.team9ProjectBackend.dto;
 
+import com.ProjectBackend.team9ProjectBackend.enums.UserRoles;
+
 public class SignUpDTO {
     public String getFirstName() {
         return firstName;
@@ -22,6 +24,16 @@ public class SignUpDTO {
     private String lastName;
     private String email;
     private String password;
+    public UserRoles getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRoles userRole) {
+        this.userRole = userRole;
+    }
+
+    private UserRoles userRole;
+
 
     // Constructors, getters, and setters
 

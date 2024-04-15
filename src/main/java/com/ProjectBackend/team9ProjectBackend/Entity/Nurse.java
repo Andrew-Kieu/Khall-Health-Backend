@@ -17,18 +17,11 @@ public class Nurse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
-
+    private String name;
     private String profession;
-
-    private String specialty ;
-
+    private String specialty;
     private String licenses;
-
     private String certifications;
-
     private String degrees;
 
 }

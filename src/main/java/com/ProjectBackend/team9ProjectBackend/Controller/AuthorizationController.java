@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Optional;
 
 @RestController
@@ -72,7 +73,10 @@ public class AuthorizationController {
         if (user.isPresent()) {
             AuthResponse authResponse = new AuthResponse();
             authResponse.setJwt(jwt);
-            authResponse.setUserRoles(user.get().getUserRole());
+
+            // Convert the UserRoles enum to a single-element List<String>
+            authResponse.setUserRoles(Collections.singletonList(user.get().getUserRole().toString()));
+
             authResponse.setId(user.get().getId());
             return ResponseEntity.ok(authResponse);
         } else {
