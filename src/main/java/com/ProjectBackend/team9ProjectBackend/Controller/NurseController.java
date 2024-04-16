@@ -15,7 +15,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/nurses")  // Specific endpoint for all nurse-related operations
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")  // More explicit in declaring CORS policy
+//@CrossOrigin(origins = "*")  // More explicit in declaring CORS policy
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+
 public class NurseController {
 
     private final NurseService nurseService;
