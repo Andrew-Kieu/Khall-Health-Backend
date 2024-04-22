@@ -14,7 +14,12 @@ import java.util.logging.Logger;
 
 
 @Component
-public class CustomCorsFilter implements Filter {
+public class CustomCorsFilter implements Filter, Ordered {
+
+    @Override
+    public int getOrder() {
+        return Ordered.HIGHEST_PRECEDENCE;
+    }
 
 
     @Override

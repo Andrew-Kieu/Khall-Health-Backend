@@ -23,5 +23,12 @@ public class Nurse {
     private String licenses;
     private String certifications;
     private String degrees;
+    private String city;
+    private String state;
+    private String employed;
+    private String lookingForWork;
+    private String email;
+    private String appliedToList;
+
 
 }
