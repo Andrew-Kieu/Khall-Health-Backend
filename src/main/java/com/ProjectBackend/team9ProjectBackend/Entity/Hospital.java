@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,26 +13,25 @@ import lombok.NoArgsConstructor;
 @Table(name = "Hospital")
 public class Hospital {
 
+    @Column(name = "hospital_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long hospitalId;
+    private String hospitalName;
 
-    @Column(nullable = false)
-    private String name;
+    private String hospitalAddress;
 
-    @Column
-    private String location;
-
-    @Column(name = "departments_hiring")
     private String deptsHiring; // This could be a comma-separated list or a JSON depending on your DB support
 
-    @Column(name = "number_of_contracts")
     private int numberOfContracts; // Assuming an integer value is sufficient
 
-    @Column(name = "detailed_address", nullable = false)
-    private String detailedAddress;
+    @Column(nullable = false)
+    private String city;
 
-    @Column(name = "contact_email")
-    private String contactEmail; // For storing the contact email
+    private String hospitalEmail; // For storing the contact email
+
+    @Column
+    private String topReviews;
 
 }
+

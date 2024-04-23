@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 @Transactional
 public class HospitalService {
@@ -26,8 +27,8 @@ public class HospitalService {
     }
 
     // Method to find a hospital by ID
-    public Hospital findHospitalById(Long id) {
-        return hospitalRepository.findById(id).orElseThrow(() -> new RuntimeException("Hospital not found"));
+    public Hospital findHospitalById(Long hospitalId) {
+        return hospitalRepository.findById(hospitalId).orElseThrow(() -> new RuntimeException("Hospital not found"));
     }
 
     // Method to save or update a hospital
@@ -36,8 +37,8 @@ public class HospitalService {
     }
 
     // Method to delete a hospital by ID
-    public void deleteHospital(Long id) {
-        Hospital hospital = findHospitalById(id);
+    public void deleteHospital(Long hospitalId) {
+        Hospital hospital = findHospitalById(hospitalId);
         hospitalRepository.delete(hospital);
     }
 }

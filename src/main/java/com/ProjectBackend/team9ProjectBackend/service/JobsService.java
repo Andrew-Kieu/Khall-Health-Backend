@@ -39,19 +39,19 @@ public class JobsService {
                 .map(job -> {
                     job.setTitle(updatedJob.getTitle());
 //                    job.setHospital(updatedJob.getHospital());
-                    job.setDetailedAddress(updatedJob.getDetailedAddress());
-                    job.setContactEmail(updatedJob.getContactEmail());
+                    job.setHospitalAddress(updatedJob.getHospitalAddress());
+                    job.setHospitalEmail(updatedJob.getHospitalEmail());
                     job.setDepartment(updatedJob.getDepartment());
-                    job.setRequiredSpecialty(updatedJob.getRequiredSpecialty());
-                    job.setRequiredLicenses(updatedJob.getRequiredLicenses());
-                    job.setRequiredCertifications(updatedJob.getRequiredCertifications());
-                    job.setRequiredDegrees(updatedJob.getRequiredDegrees());
+                    job.setSpecialtyReq(updatedJob.getSpecialtyReq());
+                    job.setLicenseReq(updatedJob.getLicenseReq());
+                    job.setCertificationReq(updatedJob.getCertificationReq());
+                    job.setDegreeReq(updatedJob.getDegreeReq());
                     job.setDetails(updatedJob.getDetails());
-                    job.setExpiration(updatedJob.getExpiration());
-                    job.setPay(updatedJob.getPay());
+                    job.setContractExpiration(updatedJob.getContractExpiration());
+                    job.setPayPerWeek(updatedJob.getPayPerWeek());
                     job.setHoursPerWeek(updatedJob.getHoursPerWeek());
                     job.setContractLength(updatedJob.getContractLength());
-                    job.setIsActive(updatedJob.getIsActive());
+                    job.setActive(updatedJob.getIsActive());
                     job.setHospitalId(updatedJob.getHospitalId());
                     return jobRepository.save(job);
                 })
