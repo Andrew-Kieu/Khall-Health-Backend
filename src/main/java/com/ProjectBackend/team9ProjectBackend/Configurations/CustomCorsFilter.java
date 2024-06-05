@@ -34,17 +34,16 @@ public class CustomCorsFilter implements Filter, Ordered {
 
             chain.doFilter(request, response);
         } catch (IOException | ServletException e) {
-            throw e; // rethrow the exception to propagate it further
+            throw e;
         }
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // Initialization logic, if needed
+
     }
 
     @Override
     public void destroy() {
-        // Cleanup logic, if needed
     }
 }

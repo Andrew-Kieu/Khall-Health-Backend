@@ -13,10 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/nurses")  // Specific endpoint for all nurse-related operations
+@RequestMapping("/api/nurses")
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "*")  // More explicit in declaring CORS policy
-//@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
 
 
 

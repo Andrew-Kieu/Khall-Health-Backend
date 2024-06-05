@@ -13,10 +13,6 @@ public class UserForLoginController {
     @Autowired
     private UserForLoginService userForLoginService;
 
-//    @GetMapping("/{username}")
-//    public UserForLogin getUserBy(@PathVariable String username) {
-//        return userForLoginService.findBy(username);
-//    }
 
     @PostMapping("/register")
     public UserForLogin registerUser(@RequestBody UserForLogin user) {
