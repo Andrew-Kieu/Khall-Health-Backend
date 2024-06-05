@@ -10,57 +10,48 @@ import java.time.LocalDate;
 @Table(name = "jobs")
 public class Jobs {
 
+    @Column(name = "contract_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long contractId;
+    @Column(nullable = false)
+    private Long hospitalId;
+
+    private String hospitalName;
 
     @Column(nullable = false)
     private String title;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "hospital_id", nullable = false)
-//    private Hospital hospital;
 
     @Column(nullable = false)
-    private Long hospitalId;
-
-    public Long getHospitalId() {
-        return hospitalId;
-    }
-
-    public void setHospitalId(Long hospitalId) {
-        this.hospitalId = hospitalId;
-    }
+    private String hospitalAddress;
 
     @Column(nullable = false)
-    private String detailedAddress;
-
-    @Column(nullable = false)
-    private String contactEmail;
+    private String hospitalEmail;
 
     @Column(nullable = false)
     private String department;
 
     @Column(nullable = false)
-    private String requiredSpecialty;
+    private String specialtyReq;
 
     @Column(nullable = false)
-    private String requiredLicenses;
+    private String licenseReq;
 
     @Column(nullable = false)
-    private String requiredCertifications;
+    private String certificationReq;
 
     @Column(nullable = false)
-    private String requiredDegrees;
+    private String degreeReq;
 
     @Column(nullable = false, length = 1000) // Assume details can be lengthy
     private String details;
 
     @Column
-    private LocalDate expiration;
+    private LocalDate contractExpiration;
 
     @Column(nullable = false)
-    private BigDecimal pay;
+    private BigDecimal payPerWeek;
 
     @Column(nullable = false)
     private Integer hoursPerWeek;
@@ -71,13 +62,28 @@ public class Jobs {
     @Column(nullable = false)
     private Boolean isActive;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
+    public Long getHospitalId() {
+        return hospitalId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHospitalId(Long hospitalId) {
+        this.hospitalId = hospitalId;
+    }
+
+    public Long getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Long contractId) {
+        this.contractId = contractId;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
     }
 
     public String getTitle() {
@@ -88,28 +94,20 @@ public class Jobs {
         this.title = title;
     }
 
-//    public Hospital getHospital() {
-//        return hospital;
-//    }
-
-//    public void setHospital(Hospital hospital) {
-//        this.hospital = hospital;
-//    }
-
-    public String getDetailedAddress() {
-        return detailedAddress;
+    public String getHospitalAddress() {
+        return hospitalAddress;
     }
 
-    public void setDetailedAddress(String detailedAddress) {
-        this.detailedAddress = detailedAddress;
+    public void setHospitalAddress(String hospitalAddress) {
+        this.hospitalAddress = hospitalAddress;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public String getHospitalEmail() {
+        return hospitalEmail;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setHospitalEmail(String hospitalEmail) {
+        this.hospitalEmail = hospitalEmail;
     }
 
     public String getDepartment() {
@@ -120,36 +118,36 @@ public class Jobs {
         this.department = department;
     }
 
-    public String getRequiredSpecialty() {
-        return requiredSpecialty;
+    public String getSpecialtyReq() {
+        return specialtyReq;
     }
 
-    public void setRequiredSpecialty(String requiredSpecialty) {
-        this.requiredSpecialty = requiredSpecialty;
+    public void setSpecialtyReq(String specialtyReq) {
+        this.specialtyReq = specialtyReq;
     }
 
-    public String getRequiredLicenses() {
-        return requiredLicenses;
+    public String getLicenseReq() {
+        return licenseReq;
     }
 
-    public void setRequiredLicenses(String requiredLicenses) {
-        this.requiredLicenses = requiredLicenses;
+    public void setLicenseReq(String licenseReq) {
+        this.licenseReq = licenseReq;
     }
 
-    public String getRequiredCertifications() {
-        return requiredCertifications;
+    public String getCertificationReq() {
+        return certificationReq;
     }
 
-    public void setRequiredCertifications(String requiredCertifications) {
-        this.requiredCertifications = requiredCertifications;
+    public void setCertificationReq(String certificationReq) {
+        this.certificationReq = certificationReq;
     }
 
-    public String getRequiredDegrees() {
-        return requiredDegrees;
+    public String getDegreeReq() {
+        return degreeReq;
     }
 
-    public void setRequiredDegrees(String requiredDegrees) {
-        this.requiredDegrees = requiredDegrees;
+    public void setDegreeReq(String degreesReq) {
+        this.degreeReq = degreesReq;
     }
 
     public String getDetails() {
@@ -160,20 +158,20 @@ public class Jobs {
         this.details = details;
     }
 
-    public LocalDate getExpiration() {
-        return expiration;
+    public LocalDate getContractExpiration() {
+        return contractExpiration;
     }
 
-    public void setExpiration(LocalDate expiration) {
-        this.expiration = expiration;
+    public void setContractExpiration(LocalDate contractExpiration) {
+        this.contractExpiration = contractExpiration;
     }
 
-    public BigDecimal getPay() {
-        return pay;
+    public BigDecimal getPayPerWeek() {
+        return payPerWeek;
     }
 
-    public void setPay(BigDecimal pay) {
-        this.pay = pay;
+    public void setPayPerWeek(BigDecimal payPerWeek) {
+        this.payPerWeek = payPerWeek;
     }
 
     public Integer getHoursPerWeek() {
@@ -196,7 +194,7 @@ public class Jobs {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

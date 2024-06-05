@@ -46,16 +46,16 @@ public class HospitalController {
     }
 
     // PUT request to update an existing hospital
-    @PutMapping("/{id}")
-    public ResponseEntity<Hospital> updateHospital(@PathVariable Long id, @RequestBody Hospital hospital) {
+    @PutMapping("/{hospitalId}")
+    public ResponseEntity<Hospital> updateHospital(@PathVariable Long hospitalId, @RequestBody Hospital hospital) {
         try {
-            Hospital existingHospital = hospitalService.findHospitalById(id);
-            existingHospital.setName(hospital.getName());
-            existingHospital.setLocation(hospital.getLocation());
+            Hospital existingHospital = hospitalService.findHospitalById(hospitalId);
+            existingHospital.setHospitalName(hospital.getHospitalAddress());
+            existingHospital.setHospitalAddress(hospital.getHospitalAddress());
             existingHospital.setDeptsHiring(hospital.getDeptsHiring());
             existingHospital.setNumberOfContracts(hospital.getNumberOfContracts());
-            existingHospital.setDetailedAddress(hospital.getDetailedAddress());
-            existingHospital.setContactEmail(hospital.getContactEmail());
+            existingHospital.setCity(hospital.getCity());
+            existingHospital.setHospitalEmail(hospital.getHospitalEmail());
             hospitalService.saveOrUpdateHospital(existingHospital);
             return ResponseEntity.ok(existingHospital);
         } catch (Exception e) {

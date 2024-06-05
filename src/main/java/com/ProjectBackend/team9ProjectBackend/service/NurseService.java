@@ -36,7 +36,8 @@ public class NurseService {
     public Nurse updateNurse(Long id, Nurse nurseDetails) {
         return nurseRepository.findById(id)
                 .map(nurse -> {
-                    nurse.setName(nurseDetails.getName());
+                    nurse.setFirstName(nurseDetails.getFirstName());
+                    nurse.setLastName(nurseDetails.getLastName());
                     // add more fields to update as necessary
                     return nurseRepository.save(nurse);
                 })

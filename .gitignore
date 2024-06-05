@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+src/main/java/com/ProjectBackend/team9ProjectBackend/util
+src/main/java/com/ProjectBackend/team9ProjectBackend/service/HospitalAuthorizationService.java
+src/main/java/com/ProjectBackend/team9ProjectBackend/service/AuthorizationServiceImplem.java
+src/main/java/com/ProjectBackend/team9ProjectBackend/Controller/HospitalAuthorizationController.java
+src/main/java/com/ProjectBackend/team9ProjectBackend/Controller/AuthorizationController.java
